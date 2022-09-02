@@ -41,7 +41,8 @@ class FileStorage:
         """Returns a dictionary of valid classes and their references."""
         from models.base_model import BaseModel
         from models.user import User
-
+        # TODO include the other classes created in task8 and 9
+        
         classes = {"BaseModel": BaseModel,
                    "User": User
                    }
