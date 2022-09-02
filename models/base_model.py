@@ -36,7 +36,7 @@ class BaseModel:
             storage.new(self)
 
     def __str__(self):
-        """Returns a human readable string representation of an instance."""
+        """Returns a string representation of an instance."""
 
         return "[{}] ({}) {}".\
             format(type(self).__name__, self.id, self.__dict__)
