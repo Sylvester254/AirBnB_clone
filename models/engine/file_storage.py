@@ -36,3 +36,13 @@ class FileStorage:
             dictionary = json.load(myfile)
             dictionary = {k: self.classes()[v["__class__"]](**v) for k,v in dictionary.items()}
             FileStorage.__objects = dictionary
+
+    def classes(self):
+        """Returns a dictionary of valid classes and their references."""
+        from models.base_model import BaseModel
+        from models.user import User
+
+        classes = {"BaseModel": BaseModel,
+                   "User": User
+                   }
+        return classes
