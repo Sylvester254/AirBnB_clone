@@ -53,8 +53,8 @@ class FileStorage:
         attributes = {
             "BaseModel":
                 {"id": str,
-                 "created_at": datetime.datetime,
-                 "updated_at": datetime.datetime},
+                 "created_at": datetime.strptime,
+                 "updated_at": datetime.strptime},
             "User":
                 {"email": str,
                  "password": str,
