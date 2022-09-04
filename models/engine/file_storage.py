@@ -42,12 +42,22 @@ class FileStorage:
         """Returns a dictionary of valid classes and their references."""
         from models.base_model import BaseModel
         from models.user import User
-        # TODO include the other classes created in task8 and 9
+        from models.amenity import Amenity
+        from models.city import City
+        from models.place import Place
+        from models.review import Review
+        from models.state import State
         
         classes = {"BaseModel": BaseModel,
-                   "User": User
+                   "User": User,
+                   "Amenity": Amenity,
+                   "City": City,
+                   "Place": Place,
+                   "Review": Review,
+                   "State": State
                    }
         return classes
+
     def attributes(self):
         """Returns the valid attributes abd their types for classname"""
         attributes = {
