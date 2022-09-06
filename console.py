@@ -11,8 +11,6 @@ import json
 
 class HBNBCommand(cmd.Cmd):
     """command interpreter class"""
-
-    intro = "Welcome to AirBnB! Type 'help' for more options."
     prompt = "(hbnb) "
 
     def do_EOF(self, line):
@@ -56,7 +54,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, input):
         """
-        Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id
+        Creates a new instance of BaseModel,
+        saves it (to the JSON file) and prints the id
         """
         if input == "" or input is None:
             print("** class name missing **")
@@ -69,7 +68,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, input):
         """
-        Prints the string representation of an instance based on the class name and id
+        Prints the string representation of an
+        instance based on the class name and id
         """
         if input == "" or input is None:
             print("** class name missing **")
@@ -87,7 +87,8 @@ class HBNBCommand(cmd.Cmd):
                     print(storage.all()[key])
 
     def do_destroy(self, input):
-        """Deletes an instance based on the class name and id (save the change into the JSON file).
+        """Deletes an instance based on the
+        class name and id (save the change into the JSON file).
         """
         if input == "" or input is None:
             print("** class name missing **")
@@ -106,23 +107,26 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
 
     def do_all(self, input):
-        """Prints all string representation of all instances based or not on the class name. 
+        """Prints all string representation of
+        all instances based or not on the class
+        name.
         """
         if input != "":
             words = input.split(' ')
             if words[0] not in storage.classes():
                 print("** class doesn't exist **")
             else:
-                l = [str(obj) for key, obj in storage.all().items()
-                     if type(obj).__name__ == words[0]]
-                print(l)
+                line = [str(obj) for key, obj in storage.all().items()
+                        if type(obj).__name__ == words[0]]
+                print(line)
         else:
-            l = [str(obj) for key, obj in storage.all().items()]
-            print(l)
+            line = [str(obj) for key, obj in storage.all().items()]
+            print(line)
 
     def do_update(self, input):
         """
-        Updates an instance based on the class name and id by adding or updating attribute
+        Updates an instance based on the class name
+        and id by adding or updating attribute
         """
         if input == "" or input is None:
             print("** class name missing **")
@@ -167,6 +171,7 @@ class HBNBCommand(cmd.Cmd):
                         pass  # fine, stay a string then
                 setattr(storage.all()[key], attribute, value)
                 storage.all()[key].save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

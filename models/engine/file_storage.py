@@ -9,24 +9,26 @@ import os
 
 class FileStorage:
     """
-    Class that serializes instances to a JSON file and deserializes JSON file to instances
+    Class that serializes instances to a JSON file
+    and deserializes JSON file to instances
     """
     __file_path = "file.json"
     __objects = {}
-    
+
     def all(self):
         """returns __objects dictionary."""
         return FileStorage.__objects
-    
+
     def new(self, obj):
         """sets new obj in __objects dictionary."""
         key = "{}.{}".format(type(obj).__name__, obj.id)
         FileStorage.__objects[key] = obj
-    
+
     def save(self):
         """serializes __objects to the JSON file"""
         with open(FileStorage.__file_path, "w", encoding="utf-8") as myfile:
-            dictionary = {k: v.to_dict() for k, v in FileStorage.__objects.items()}
+            dictionary = {k: v.to_dict() for k, v in
+                          FileStorage.__objects.items()}
             json.dump(dictionary, myfile)
 
     def reload(self):
@@ -35,7 +37,8 @@ class FileStorage:
             return
         with open(FileStorage.__file_path, "r", encoding="utf-8") as myfile:
             dictionary = json.load(myfile)
-            dictionary = {k: self.classes()[v["__class__"]](**v) for k,v in dictionary.items()}
+            dictionary = {k: self.classes()[v["__class__"]](**v)
+                          for k, v in dictionary.items()}
             FileStorage.__objects = dictionary
 
     def classes(self):
@@ -47,7 +50,7 @@ class FileStorage:
         from models.place import Place
         from models.review import Review
         from models.state import State
-        
+
         classes = {"BaseModel": BaseModel,
                    "User": User,
                    "Amenity": Amenity,
@@ -78,17 +81,17 @@ class FileStorage:
             "Amenity":
                 {"name": str},
             "Place":
-                     {"city_id": str,
-                      "user_id": str,
-                      "name": str,
-                      "description": str,
-                      "number_rooms": int,
-                      "number_bathrooms": int,
-                      "max_guest": int,
-                      "price_by_night": int,
-                      "latitude": float,
-                      "longitude": float,
-                      "amenity_ids": list},
+                {"city_id": str,
+                 "user_id": str,
+                 "name": str,
+                 "description": str,
+                 "number_rooms": int,
+                 "number_bathrooms": int,
+                 "max_guest": int,
+                 "price_by_night": int,
+                 "latitude": float,
+                 "longitude": float,
+                 "amenity_ids": list},
             "Review":
                 {"place_id": str,
                  "user_id": str,
